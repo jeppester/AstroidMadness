@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title>AstroidMadness</title>
+	
+	<!-- Google analytics -->
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-25287009-2']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+	<link href='http://fonts.googleapis.com/css?family=VT323' rel='stylesheet' type='text/css' />
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+	<style type="text/css">
+		html {
+			font-family: Arial;
+			font-size:14px;
+			background-color:#333;
+			background-image:url('img/backgrounds/menuBg.png');
+		}
+		#display {
+			font-size:12px;
+		}
+		
+		h1,h2 {
+			font-family:'VT323';
+		}
+		
+		a:hover {
+			cursor: pointer;
+			color: #fff;
+		}
+		
+		td {
+			font-size:12px;
+			vertical-align:top;
+		}
+	</style>
+</head>
+<body style="font-weight:bold;">
+	<div id="arena" style="position:absolute;top:0;left:50%;margin-left:-512px;width:1024px;height:574px;overflow:hidden;background-image:url('img/backgrounds/OmegaCent.png')">
+		<div id="menu" style="position:absolute;width:500px;left:245px;top:574px;background-image:url('img/backgrounds/menuBg.png');border:2px solid #333;color:#999;z-index:6;padding:20px;text-align:center;"></div>
+	</div>
+	
+	<div id="display" style="position:absolute;top:574px;left:50%;margin-left:-512px;height:24px;width:1024px;background-color:#000;border-top:2px solid #333;color:#fff;">
+		<div id="timeBar" style="position:absolute;top:-2px;background-color:#F33;"></div>
+		<div style="width:105px;margin:4px;float:left;color:#48F;">P1 Score: <span id="scoreDisp" style="float:right;"></span></div>
+		<div style="width:105px;margin:4px;float:right;color:#F33">P2 Score: <span id="scoreDisp2" style="float:right;"></span></div>
+		<div id="console" style="text-align:center;margin:4px;"></div>
+	</div>
+	
+	<script type="text/javascript" src="js/lib/jquery.js"></script>
+	
+	<script type="text/javascript" src="js/classes/Sprite.js"></script>
+	<script type="text/javascript" src="js/classes/SpaceObject.js"></script>
+	<script type="text/javascript" src="js/classes/SpaceShip.js"></script>
+	<script type="text/javascript" src="js/classes/Astroid.js"></script>
+	<script type="text/javascript" src="js/classes/PowerUp.js"></script>
+	<script type="text/javascript" src="js/classes/Bullet.js"></script>
+	<script type="text/javascript" src="js/classes/Menu.js"></script>
+	<script type="text/javascript" src="js/classes/Display.js"></script>
+	<script type="text/javascript" src="js/classes/KeyIndex.js"></script>
+	
+	<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
