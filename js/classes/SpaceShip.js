@@ -260,8 +260,9 @@ function SpaceShip(_src,_depth,_x,_y,_thrust,_left,_right,_shoot1,_shoot2) {
 	
 	this.resize=function (dSize) {
 		var curSize;
-		if (stepAnims[this.id]) {
-			curSize=stepAnims[this.id].b+stepAnims[this.id].c;
+		if (animator.animations[0][this.id]) {
+			var a=animator.animations[0][this.id];
+			curSize=a.b+a.c;
 		}
 		else {
 			curSize=this.bmSize;

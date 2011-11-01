@@ -93,7 +93,7 @@ function Sprite(_src,_depth,_x,_y,_dir) {
 			}
 			
 			anim.start=gameTime;
-			stepAnims[this.id]=anim;
+			animator.animations[1][this.id]=anim;
 		}
 		else {
 			if (frameAnims[this.id]!=undefined) {
@@ -101,7 +101,7 @@ function Sprite(_src,_depth,_x,_y,_dir) {
 			}
 			
 			anim.start=new Date().getTime();
-			frameAnims[this.id]=anim;
+			animator.animations[1][this.id]=anim;
 		}
 	}
 }

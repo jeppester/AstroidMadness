@@ -164,6 +164,9 @@ function submitScore() {
 	});
 }
 
+//Lav animator-objekt
+var animator=new Animator();
+
 //Vis menuen
 setTimeout("menu.showMain()",100);
 
@@ -172,93 +175,6 @@ setTimeout("mainLoop()",loopSpeed);
 
 var frames=0;
 var steps=0;
-
-function animStep(anim,step) {
-	var obj=anim.obj;
-	var t;
-	
-	if (step) {
-		t=gameTime-anim.start;
-	}
-	else {
-		t=(new Date().getTime())-anim.start;
-	}
-	
-	if (t>anim.d) {
-		if (step) {
-			delete stepAnims[obj.id];
-		}
-		else {
-			delete frameAnims[obj.id];
-		}	
-		obj[anim.prop]=anim.b+anim.c;
-		eval(anim.onEnd);
-	}
-	else {
-		obj[anim.prop]=ease(anim.easing,t,anim.b,anim.c,anim.d);
-	}
-}
-
-function ease(type,t,b,c,d,verb) {
-	switch (type) {
-		case "linear":
-			t/=d
-			return b+c*t;
-		break;
-		case "quadIn":
-			t/=d
-			return b+c*t*t;
-		break;
-		case "quadOut":
-			t/=d
-			return b-c*t*(t-2);
-		break;
-		case "quadInOut":
-			t=t/d*2;
-			if (t<1) {
-				return b+c*t*t/2;
-			}
-			else {
-				t--;
-				return b+c*(1-t*(t-2))/2;
-			}
-		break;
-		case "powerIn":
-			t/=d;
-			
-			//a angiver om c er positiv eller negativ
-			a=c/Math.abs(c);
-			
-			return b+a*Math.pow(Math.abs(c),t);
-		break;
-		case "powerOut":
-			t/=d;
-			
-			//a angiver om c er positiv eller negativ
-			a=c/Math.abs(c);
-			
-			return b+c-a*Math.pow(Math.abs(c),1-t);
-		break;
-		case "powerInOut":
-			t=t/d*2;
-			
-			//a angiver om c er positiv eller negativ
-			a=c/Math.abs(c);
-			
-			if (t<1) {
-				return b+a*Math.pow(Math.abs(c),t)/2;
-			}
-			else {
-				t--;
-				return b+c-a*Math.pow(Math.abs(c),1-t)/2;
-			}
-		break;
-		case "sinusInOut":
-			t/=d
-			return b+c*(1+Math.cos(Math.PI*(1+t)))/2;
-		break;
-	}
-}
 
 function mainLoop() {
 	//Hent den nuværende tid, så alle bevægelser bliver relativt til tiden
@@ -284,9 +200,7 @@ function mainLoop() {
 		}
 		
 		//Opdatér animationer der kun foretages mens spillet kører
-		for (var i in stepAnims) {
-			animStep(stepAnims[i],1);
-		}
+		animator.updateAll(0);
 		
 		aMax=Math.floor(5+(gameTime)/8500);
 		if (Object.keys(depth[4]).length<aMax) {
@@ -308,9 +222,7 @@ function mainLoop() {
 	}
 	
 	//Opdatér animationer der kører hver gang en frame tegnes
-	for (var i in frameAnims) {
-		animStep(frameAnims[i],0);
-	}
+	animator.updateAll(1);
 	
 	//Udfør draw-funktioner
 	//Hvis der bruges canvas, clear det
