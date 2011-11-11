@@ -118,12 +118,12 @@ function Menu(id) {
 				if (players==1) {
 					HTML+='<p style="color:#48F;">Congratulations!<br/>You\'ve got a high score!</p>';
 					HTML+='<p style="color:#6F4;">';
-					HTML+='<input style="border:2px solid #333;background-color:#000;color:inherit;font:inherit;" id="playername" type="text" onfocus="if(this.value=\'Enter your name\')this.value=\'\'" value="Enter your name"/>';
+					HTML+='<input maxlength="20" style="border:2px solid #333;background-color:#000;color:inherit;font:inherit;" id="playername" type="text" onfocus="if(this.value==\'Enter your name\')this.value=\'\'" value="Enter your name"/>';
 				}
 				else {
 					HTML+='<p style="color:#48F;">Congratulations!<br/>Your total score is on the top ten!</p>';
 					HTML+='<p style="color:#6F4;">';
-					HTML+='<input style="border:2px solid #333;background-color:#000;color:inherit;font:inherit;" id="playername" type="text" onfocus="if(this.value=\'Enter your team name\')this.value=\'\'" value="Enter your team name"/>';
+					HTML+='<input maxlength="20" style="border:2px solid #333;background-color:#000;color:inherit;font:inherit;" id="playername" type="text" onfocus="if(this.value==\'Enter your team name\')this.value=\'\'" value="Enter your team name"/>';
 				}
 				HTML+='<input style="border:2px solid #333;background-color:#000;color:#999;font:inherit;" onclick="submitScore(ship);" name="playername" type="button" value="Submit"/>';
 				HTML+='</p>';

@@ -7,7 +7,7 @@ function Bullet(_src,_depth,_x,_y,_dir,_dX,_dY,_speed,_level) {
 	
 	//Lyde
 	this.sfx=new Object();
-	this.sfx.fire=new Audio("sfx/laser"+this.level+"2.wav");
+	this.sfx.fire=new Audio(loader.sounds["sfx/laser"+this.level+"2.wav"].src);
 	if (sfxOn) {
 		this.sfx.fire.play();
 	}

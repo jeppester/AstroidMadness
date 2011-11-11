@@ -6,8 +6,7 @@ function Astroid(_depth,_type,_size,_x,_y,_dX,_dY) {
 	
 	//Lyde
 	this.sfx=new Object();
-	this.sfx.divide=new Audio("sfx/astroid1.wav");
-	this.sfx.shield=new Audio("sfx/shield2.wav");
+	this.sfx.divide=new Audio(loader.sounds["sfx/astroid1.wav"].src);
 	
 	//Hvis x og y ikke er angivet, placér asteroiden udenfor banen (så den flyver ind)
 	if (_x==undefined && _y==undefined) {

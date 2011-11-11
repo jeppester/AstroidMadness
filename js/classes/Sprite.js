@@ -10,12 +10,13 @@ function Sprite(_src,_depth,_x,_y,_dir) {
 	
 	if (!useCanvas) {
 		this.bm=new Image();
-		this.bm.src=img[_src].src;
+		this.bm.src=loader.images[_src].src;
 		this.bm.style.position="absolute";
 	}
 	else {
-		this.bm=img[_src];
+		this.bm=loader.images[_src];
 	}
+	
 	this.bmSize=this.bm.width;
 	this.opacity=1;
 	depth[this.depth][this.id]=this;
@@ -27,6 +28,7 @@ function Sprite(_src,_depth,_x,_y,_dir) {
 		this.bm.style.webkitTransform="rotate("+this.dir+"deg)";
 		this.bm.style.msTransform="rotate("+this.dir+"deg)";
 		this.bm.style.MozTransform="rotate("+this.dir+"deg)";
+		arena.appendChild(this.bm);
 	}
 	
 	//Update sørger for at Sprite'en såfremt den position ændres, opdateres på skærmen
@@ -69,13 +71,9 @@ function Sprite(_src,_depth,_x,_y,_dir) {
 		ctx.restore();
 	}
 	
-	if (!useCanvas) {
-		arena.appendChild(this.bm);
-	}
-	
-	this.animate=function (_prop,_to,_dur,_onEnd,_step,_easing) {
+	this.animate=function (_prop,_to,_dur,_onEnd,_layer,_easing) {
 		var anim=new Object();
-		_step=_step!=undefined?_step:1;
+		var layer=_layer?_layer:0;
 		
 		anim.onEnd=_onEnd?_onEnd:"";
 		anim.easing=_easing?_easing:"quadInOut";
@@ -87,21 +85,15 @@ function Sprite(_src,_depth,_x,_y,_dir) {
 		anim.b=this[anim.prop];
 		anim.c=_to-anim.b;
 		
-		if (_step) {
-			if (stepAnims[this.id]!=undefined) {
-				delete stepAnims[this.id];
-			}
-			
-			anim.start=gameTime;
-			animator.animations[1][this.id]=anim;
-		}
+		if (layer==0) {
+			anim.start=gameTime;		}
 		else {
-			if (frameAnims[this.id]!=undefined) {
-				delete frameAnims[this.id];
-			}
-			
 			anim.start=new Date().getTime();
-			animator.animations[1][this.id]=anim;
 		}
+		
+		if (animator.animations[layer][this.id]!=undefined) {
+			delete animator.animations[layer][this.id];
+		}
+		animator.animations[layer][this.id]=anim;
 	}
 }

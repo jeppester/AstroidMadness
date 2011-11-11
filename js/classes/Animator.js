@@ -1,6 +1,6 @@
 //animationator håndterer animationer
 function Animator () {
-	var this.animations=new Array();
+	this.animations = new Array();
 	this.animations.push(new Object(),new Object());
 	
 	//Function til at opdatere alle animationer
@@ -16,7 +16,6 @@ function Animator () {
 	
 	this.update=function (animation,layer) {
 		var a=animation;
-		var obj=a.obj;
 		var t;
 		
 		if (layer==0) {
@@ -27,17 +26,12 @@ function Animator () {
 		}
 		
 		if (t>a.d) {
-			if (step) {
-				delete animations[layer][obj.id];
-			}
-			else {
-				delete animations[layer][obj.id];
-			}	
-			obj[a.prop]=a.b+a.c;
+			delete animator.animations[layer][a.obj.id];
+			a.obj[a.prop]=a.b+a.c;
 			eval(a.onEnd);
 		}
 		else {
-			obj[a.prop]=this.ease(a.easing,t,a.b,a.c,a.d);
+			a.obj[a.prop]=this.ease(a.easing,t,a.b,a.c,a.d);
 		}
 	}
 	

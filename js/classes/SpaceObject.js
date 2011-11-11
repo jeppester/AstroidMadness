@@ -12,7 +12,7 @@ function SpaceObject(_src,_depth,_x,_y,_dir,_dX,_dY) {
 		if (this.alive) {
 			this.alive=false;
 			time=time?time:200;
-			this.animate("bmSize",0,time,"depth["+this.depth+"]['"+this.id+"'].purge()",0);
+			this.animate("bmSize",0,time,"depth["+this.depth+"]['"+this.id+"'].purge()",1);
 		}
 	}
 	

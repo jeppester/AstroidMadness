@@ -30,8 +30,10 @@ function SpaceShip(_src,_depth,_x,_y,_thrust,_left,_right,_shoot1,_shoot2) {
 	
 	//Lyde
 	this.sfx=new Object();
-	this.sfx.die=new Audio("sfx/explosion3.wav");
-	this.sfx.PU=new Audio("sfx/powerup2.wav");
+	this.sfx.die=new Audio(loader.sounds["sfx/explosion3.wav"].src);
+	this.sfx.PU=new Audio(loader.sounds["sfx/powerup2.wav"].src);
+	this.sfx.shield=new Audio(loader.sounds["sfx/shield2.wav"].src);
+
 	
 	//Spawnting
 	this.spawned=false;
@@ -91,7 +93,7 @@ function SpaceShip(_src,_depth,_x,_y,_thrust,_left,_right,_shoot1,_shoot2) {
 			this.update();
 			
 			//Fade skibet ind
-			this.animate("bmSize",32,400,"pause=false",false);
+			this.animate("bmSize",32,400,"pause=false",1);
 		
 			//Sæt spawned til true, der kan nu spilles videre
 			this.spawned=true;
@@ -223,7 +225,7 @@ function SpaceShip(_src,_depth,_x,_y,_thrust,_left,_right,_shoot1,_shoot2) {
 				if (dist<0) {
 					if (this.shieldOn) {
 						if (sfxOn) {
-							cObj.sfx.shield.play();
+							this.sfx.shield.play();
 						}
 					
 						cObj.remove();
